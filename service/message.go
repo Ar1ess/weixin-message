@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"encoding/json"
 	"encoding/xml"
 	"github.com/baidubce/bce-qianfan-sdk/go/qianfan"
 	"io"
@@ -58,7 +57,7 @@ type Msg struct {
 
 func NewMsg(data []byte) *Msg {
 	var msg Msg
-	if err := json.Unmarshal(data, &msg); err != nil {
+	if err := xml.Unmarshal(data, &msg); err != nil {
 		return nil
 	}
 	return &msg
