@@ -64,6 +64,8 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Printf("qianfan body : %s", resp.Result)
+
 	res.Code = 0
 	res.Data = resp.Result
 	res.ErrorMsg = ""
