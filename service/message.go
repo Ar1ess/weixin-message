@@ -44,13 +44,14 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Msg struct {
-	ToUserName   string `xml:"ToUserName"`
-	FromUserName string `xml:"FromUserName"`
-	CreateTime   int64  `xml:"CreateTime"`
-	MsgType      string `xml:"MsgType"`
-	Event        string `xml:"Event"`
-	Content      string `xml:"Content"`
-	Recognition  string `xml:"Recognition"`
+	XMLName      xml.Name `xml:"xml"`
+	ToUserName   string   `xml:"ToUserName"`
+	FromUserName string   `xml:"FromUserName"`
+	CreateTime   int64    `xml:"CreateTime"`
+	MsgType      string   `xml:"MsgType"`
+	Event        string   `xml:"Event"`
+	Content      string   `xml:"Content"`
+	Recognition  string   `xml:"Recognition"`
 
 	MsgId int64 `xml:"MsgId,omitempty"`
 }
