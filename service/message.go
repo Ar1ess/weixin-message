@@ -65,17 +65,8 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("qianfan body : %s", resp.Result)
-
-	res.Code = 0
-	res.Data = resp.Result
-	res.ErrorMsg = ""
-	msg, err := json.Marshal(res)
-	if err != nil {
-		fmt.Fprint(w, "内部错误")
-		return
-	}
 	w.Header().Set("content-type", "application/json")
-	w.Write(msg)
+	w.Write([]byte(resp.Result))
 }
 
 func PeekRequest(request *http.Request) ([]byte, error) {
