@@ -32,13 +32,13 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 		},
 	)
 	if err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.Header().Set("Content-Type", "application/xml; charset=utf-8")
 		w.Write(msg.GenerateEchoData(err.Error()))
 		return
 	}
 
 	log.Printf("qianfan body : %s", resp.Result)
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
 	w.Write(msg.GenerateEchoData(resp.Result))
 }
