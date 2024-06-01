@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 	"encoding/xml"
 	"github.com/baidubce/bce-qianfan-sdk/go/qianfan"
 	"io"
@@ -15,6 +16,10 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 
 	bs, _ := io.ReadAll(r.Body)
 	msg := NewMsg(bs)
+	if msg == nil {
+		log.Printf("log body is nil")
+		return
+	}
 
 	log.Printf("log body : %s", msg.Content)
 
@@ -53,7 +58,7 @@ type Msg struct {
 
 func NewMsg(data []byte) *Msg {
 	var msg Msg
-	if err := xml.Unmarshal(data, &msg); err != nil {
+	if err := json.Unmarshal(data, &msg); err != nil {
 		return nil
 	}
 	return &msg
